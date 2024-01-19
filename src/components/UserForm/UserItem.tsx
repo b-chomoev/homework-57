@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Users: React.FC = () => {
+const UserItem: React.FC = () => {
     return (
         <div>
-            Users
+            UserItem
         </div>
     );
 };
 
-export default Users;
+export default UserItem;

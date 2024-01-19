@@ -1,5 +1,7 @@
 import Appbar from "./components/Appbar/Appbar";
 import React from "react";
+import UserForm from "./components/UserForm/UserForm";
+import Users from "./components/Users/Users";
 
 function App() {
 
@@ -9,7 +11,14 @@ function App() {
                 <Appbar />
             </header>
             <main className='container-fluid'>
-                Content will be here !
+                <div className='row mt-2'>
+                    <div className='col-6'>
+                        <UserForm/>
+                    </div>
+                    <div className='col-6'>
+                        <Users/>
+                    </div>
+                </div>
             </main>
 
         </React.Fragment>
