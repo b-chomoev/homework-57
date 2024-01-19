@@ -45,6 +45,7 @@ const UserForm: React.FC = () => {
                     ))}
                 </select>
             </div>
+            <button type='submit' className='btn btn-success mt-3'>Add</button>
         </form>
     );
 };

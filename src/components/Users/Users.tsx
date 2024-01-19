@@ -1,10 +1,14 @@
 import React from 'react';
+import UserItem from "../UserForm/UserItem";
 
 const Users: React.FC = () => {
     return (
-        <div>
-            Users
-        </div>
+        <>
+            <h4>User Info</h4>
+            <UserItem/>
+            <UserItem/>
+            <UserItem/>
+        </>
     );
 };
 
