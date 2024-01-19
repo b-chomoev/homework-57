@@ -1,9 +1,16 @@
 import Appbar from "./components/Appbar/Appbar";
-import React from "react";
+import React, {useState} from "react";
 import UserForm from "./components/UserForm/UserForm";
 import Users from "./components/Users/Users";
+import {User} from "./type";
 
 function App() {
+
+    const [users, setUsers] = useState<User[]>([]);
+
+    const addInfo = (user: User) => {
+        setUsers([...users, { ...user, id: users.length + 1}]);
+    };
 
     return (
         <React.Fragment>
@@ -13,10 +20,10 @@ function App() {
             <main className='container-fluid'>
                 <div className='row mt-2'>
                     <div className='col-6'>
-                        <UserForm/>
+                        <UserForm onSubmit={addInfo}/>
                     </div>
                     <div className='col-6'>
-                        <Users/>
+                        <Users users={users}/>
                     </div>
                 </div>
             </main>

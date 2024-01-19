@@ -1,9 +1,45 @@
-import React from 'react';
+import React, {useState }from 'react';
 import {CATEGORIES} from "../../constants";
+import {User} from "../../type";
 
-const UserForm: React.FC = () => {
+interface Props {
+    onSubmit: (user: User) => void;
+}
+
+const UserForm: React.FC<Props> = ({onSubmit}) => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [isActive, setIsActive] = useState(false);
+    const [role, setRole] = useState('user');
+
+    const checkboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsActive(e.target.checked);
+    };
+
+    const categoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setRole(e.target.value);
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const newUser = {
+            id: 0,
+            active: true,
+            name,
+            email,
+            isActive,
+            role
+        };
+
+        onSubmit(newUser);
+        setName('');
+        setEmail('');
+        setIsActive(false);
+        setRole('user');
+    };
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <h4>Add user's info</h4>
             <div className='form-group'>
                 <label htmlFor='name'>Name</label>
@@ -12,6 +48,8 @@ const UserForm: React.FC = () => {
                     name='name'
                     id='name'
                     className='form-control'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                 />
             </div>
             <div className='form-group'>
@@ -21,6 +59,7 @@ const UserForm: React.FC = () => {
                     name='email'
                     id='email'
                     className='form-control'
+                    value={email} onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
             <div className='form-group'>
@@ -30,6 +69,8 @@ const UserForm: React.FC = () => {
                     name='isActive'
                     id='isActive'
                     className='form-check-input'
+                    checked={isActive}
+                    onChange={checkboxChange}
                 />
             </div>
             <div className='form-group'>
@@ -38,6 +79,8 @@ const UserForm: React.FC = () => {
                     name='category'
                     id='category'
                     className='form-select'
+                    value={role}
+                    onChange={categoryChange}
                 >
                     <option value=''>Select a category</option>
                     {CATEGORIES.map(category => (

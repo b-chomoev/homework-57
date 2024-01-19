@@ -1,6 +1,7 @@
 import React from 'react';
+import {User} from "../../type";
 
-const UserItem: React.FC = () => {
+const UserItem: React.FC<{user: User}> = () => {
     return (
         <div className='card mb-3'>
             <div className='row g-0'>
